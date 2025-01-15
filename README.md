@@ -18,9 +18,13 @@ There are two tracks in this shared task:
 
 ## Data
 
-The dataset was provided by the [Texty.org.ua](https://texty.org.ua/) team. It consists of Ukrainian Telegram posts annotated for the presence of ten manipulation techniques. The annotation was performed by experienced journalists, analysts, and media professionals. Detailed explanations and examples of manipulation techniques are available in `data/techniques_description.pdf`.
+The dataset was provided by the [Texty.org.ua](https://texty.org.ua/) team. It consists of Ukrainian Telegram posts annotated for the presence of ten manipulation techniques. The annotation was performed by experienced journalists, analysts, and media professionals. Detailed explanations and examples of manipulation techniques are available in [data/techniques_classification/techniques_description.pdf](./data/techniques_classification/techniques_description.pdf).
 
-**Dataset Location:** TBD
+**Dataset Location:** 
+
+The two main dirs for the two tracks are:
+- [data/span_detection](./data/span_detection)
+- [data/techniques_classification](./data/techniques_classification)
 
 ## Limitations
 
