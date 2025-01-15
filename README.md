@@ -20,8 +20,6 @@ There are two tracks in this shared task:
 
 The dataset was provided by the [Texty.org.ua](https://texty.org.ua/) team. It consists of Ukrainian Telegram posts annotated for the presence of ten manipulation techniques. The annotation was performed by experienced journalists, analysts, and media professionals. Detailed explanations and examples of manipulation techniques are available in [data/techniques_classification/techniques_description.pdf](./data/techniques_classification/techniques_description.pdf).
 
-**Dataset Location:** 
-
 The two main dirs for the two tracks are:
 - [data/span_detection](./data/span_detection)
 - [data/techniques_classification](./data/techniques_classification)
@@ -60,6 +58,8 @@ Submitting a paper is not mandatory for participating in the Shared Task.
 ## Important Dates
 
 - **December 20, 2024** — Shared task announcement  
+- **January 15, 2024** — Release of train data  
+- **January 23, 2024** — Second call for participation
 - **March 23, 2025** — Registration deadline  
 - **March 24, 2025** — Release of test data to registered participants  
 - **March 31, 2025** — Submission of system responses  
