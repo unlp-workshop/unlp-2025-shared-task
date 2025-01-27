@@ -60,10 +60,9 @@ Submitting a paper is not mandatory for participating in the Shared Task.
 - **December 20, 2024** — Shared task announcement  
 - **January 15, 2024** — Release of train data  
 - **January 27, 2024** — Second call for participation
-- **March 23, 2025** — Registration deadline  
-- **March 24, 2025** — Release of test data to registered participants  
-- **March 31, 2025** — Submission of system responses  
-- **April 4, 2025** — Results of the Shared Task announced  
+- **March 23, 2025** — Registration deadline
+- **March 31 (11:58 PM GMT +02:00), 2025** — Final Submission Deadline  
+- **April 4, 2025** — Results of the Shared Task announced and release of test data  
 - **April 14, 2025** — Shared Task paper due  
 - **May 12, 2025** — Notification of acceptance  
 - **June 2, 2025** — Camera-ready Shared Task papers due  
