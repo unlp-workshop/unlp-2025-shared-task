@@ -1,14 +1,5 @@
 ## [Manipulation Techniques](https://github.com/unlp-workshop/unlp-2025-shared-task/blob/main/data/techniques_classification/techniques_description.pdf)
 
-The dataset was provided by the Texty.org.ua team. It consists of Ukrainian Telegram posts annotated for the presence of ten manipulation techniques. The annotation was performed by experienced journalists, analysts, and media professionals. Detailed explanations and examples of manipulation techniques are available below.
-
-In this task, your goal is to identify manipulation techniques in Ukrainian social media content (specifically, Telegram). In this context, “manipulation” refers to the presence of specific rhetorical or stylistic techniques aimed to influence the audience without providing clear factual support.
-
-Given the text of a post, identify which manipulation techniques are used, if any. This is a multilabel classification problem; a single post can contain multiple techniques.
-
-Each of the ten labels and particular examples with explanations are provided below.
-
-
 1. **Loaded Language**: The use of words and phrases with a strong emotional connotation (positive or negative) to influence the audience.
 
 >	“Военкомы продолжают **паковать украинцев** в микроавтобусы, пока нардепы только хотят рассмотреть нарушения в мобилизационном треке. Чем дольше власть тянет с решением этой проблемы, тем больше в обществе напоминают **негативные тенденции**.”
