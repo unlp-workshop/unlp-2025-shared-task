@@ -88,7 +88,7 @@ Details: [How Russian propaganda uses whataboutism tactics](https://disinfo.dete
 
 >  “#Слухи #Раскладка По нашим данным военкомы Одесской, Полтавской, Кировоградской, Днепропетровской, Харьковской, Черкасской областей, почти перевыполняют план по мобилизации. Усилено хватают всех. К примеру западная Украина срывает все мобилизационные процессы, не выполняя план даже на 50% (только отдельные регионы и города Западной Украины идут в норму с планом, так как есть четкая разнарядка с Киева по этим районам)” 
 
-Тут підкреслюється перевиконання якихось показників в одних областях і недовиконання в інших без надання контексту чи доказів.
+It emphasizes over-fulfillment of certain indicators in some areas and under-fulfillment in others without providing context or evidence.
 
 > “#Раскладка Зеленский в интервью WP фактически озвучил публично перенос выборов минимум на 2024 год. Многие это связывают с тем, что Банковая не сильно верит в грандиозный успех предстоящего наступления ВСУ. Мы об этом инсайдили. Но многие наши источники сообщают, что Зеленский хочет оставить тлеющий конфликт минимум до 2025 года, тем самым не отменяя военное положение и не проводя выборы. За это время он хочет зачистить полностью всех конкурентов внутри страны, монополизировать медиа ресурсы и финансовые потоки...».”
 
@@ -106,5 +106,5 @@ Misrepresents a law on marijuana as part of a larger agenda that threatens Ukrai
 
 Original position is replaced with an exaggerated or unrelated argument to make it easier to attack.
 
-Details: [Як російська пропаганда застосовує тактику «опудало»](https://disinfo.detector.media/en/post/yak-rosiiska-propahanda-zastosovuie-taktyku-opudalo)
+Details: [How Russian propaganda uses the “straw man” tactic](https://disinfo.detector.media/en/post/yak-rosiiska-propahanda-zastosovuie-taktyku-opudalo)
   
