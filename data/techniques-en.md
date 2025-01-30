@@ -1,4 +1,4 @@
-## [Manipulation Techniques](https://github.com/unlp-workshop/unlp-2025-shared-task/blob/main/data/techniques_classification/techniques_description.pdf)
+## Manipulation Techniques
 
 1. **Loaded Language**: The use of words and phrases with a strong emotional connotation (positive or negative) to influence the audience.
 

@@ -18,7 +18,7 @@ There are two tracks in this shared task:
 
 ## Data
 
-The dataset was provided by the [Texty.org.ua](https://texty.org.ua/) team. It consists of Ukrainian Telegram posts annotated for the presence of ten manipulation techniques. The annotation was performed by experienced journalists, analysts, and media professionals. Detailed explanations and examples of manipulation techniques are available in [data/techniques_classification/README.md](./data/techniques_classification/README.md).
+The dataset was provided by the [Texty.org.ua](https://texty.org.ua/) team. It consists of Ukrainian Telegram posts annotated for the presence of ten manipulation techniques. The annotation was performed by experienced journalists, analysts, and media professionals. Detailed explanations and examples of manipulation techniques are available in [data/techniques-en.md](./data/techniques-en.md).
 
 The two main dirs for the two tracks are:
 - [data/span_detection](./data/span_detection)
@@ -40,10 +40,6 @@ To ensure fair and reproducible results:
 
 - **Subtask 2 (Span Identification):**  
   - Metric: **Token-level F1** (for binary span detection)
-
-## Baselines
-
-TBD
 
 ## Submission
 
