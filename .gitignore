@@ -1,3 +1,5 @@
 .DS_Store
 venv/
 notebooks/
+annotations
+*.tex
