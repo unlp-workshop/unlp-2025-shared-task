@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=5 vllm serve "NousResearch/Hermes-3-Llama-3.2-3B" --port 42003 --dtype bfloat16 --gpu-memory-utilization 0.9 --seed 0 --max-model-len 120000

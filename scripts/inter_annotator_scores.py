@@ -59,22 +59,13 @@ def compute_agreement_scores(
 
     # Compare each pair of annotators
     for annotator1, annotator2 in combinations(annotators, 2):
-        df[f"{annotator1}-{annotator2}_scores"] = pd.Series(dtype=float)
         label_scores = {}
         all_ious = []  # Store all IOUs for computing average across labels
-
+        # Create empty DataFrame with columns for each label
+        label_iou_df = pd.DataFrame(index=df.index, columns=list(unique_labels))
         for label in unique_labels:
-            total_iou = 0
-            valid_samples = 0
-
-            # Compute sample-wise scores
-            for idx, row in df.iterrows():
-                if pd.isna(row[f"{annotator1}_annotations"]) or pd.isna(
-                    row[f"{annotator2}_annotations"]
-                ):
-                    df.at[idx, f"{annotator1}-{annotator2}_scores"] = np.nan
-                    continue
-
+            # Define function to compute IoU for each row
+            def compute_row_iou(row):
                 annotations1 = json.loads(row[f"{annotator1}_annotations"])
                 annotations2 = json.loads(row[f"{annotator2}_annotations"])
 
@@ -88,11 +79,7 @@ def compute_agreement_scores(
 
                 # If neither annotator has marked this label, count as perfect agreement
                 if not has_label1 and not has_label2:
-                    iou = 1.0
-                    df.at[idx, f"{annotator1}-{annotator2}_scores"] = iou
-                    total_iou += iou
-                    valid_samples += 1
-                    continue
+                    return 1.0
 
                 vec1 = create_label_vectors(
                     row["text"],
@@ -107,19 +94,16 @@ def compute_agreement_scores(
                     label,
                 )
 
-                iou = compute_iou(vec1, vec2)
-                df.at[idx, f"{annotator1}-{annotator2}_scores"] = iou
-                total_iou += iou
-                valid_samples += 1
+                return compute_iou(vec1, vec2)
 
-            # Compute average for this label
-            avg_iou = total_iou / valid_samples if valid_samples > 0 else np.nan
-            label_scores[label] = avg_iou
-            if not np.isnan(avg_iou):
-                all_ious.append(avg_iou)
+            # Apply function to all rows
+            label_iou_df[label] = df.apply(compute_row_iou, axis=1)
+            label_scores[label] = label_iou_df[label].mean()
 
+        # Calculate average IoU for all labels in each row
+        df[f"{annotator1}-{annotator2}_scores"] = label_iou_df.mean(axis=1)
         # Compute average across all labels
-        label_scores["overall_average"] = np.mean(all_ious) if all_ious else np.nan
+        label_scores["overall_average"] = df[f"{annotator1}-{annotator2}_scores"].mean()
         results[(annotator1, annotator2)] = label_scores
 
     return results, df
@@ -193,10 +177,9 @@ def main():
     # Compute scores
     scores, result_df = compute_agreement_scores(pivot_df, annotators, unique_labels)
 
-    # Format results for both console and file output
+    # Print results and save to files
     output_lines = []
 
-    # Add information about samples and ignored labels
     if args.num_samples is not None:
         output_lines.append(
             f"Using first {len(pivot_df)} samples for score computation"
@@ -210,32 +193,20 @@ def main():
 
     for (annotator1, annotator2), label_scores in scores.items():
         output_lines.append(f"\n{annotator1} vs {annotator2}:")
-        # Print overall average first
-        if np.isnan(label_scores["overall_average"]):
-            output_lines.append("  Overall Average: No valid samples")
-        else:
-            output_lines.append(
-                f"  Overall Average: {label_scores['overall_average']:.3f}"
-            )
+        output_lines.append(
+            f"  Overall average: {label_scores.pop('overall_average'):.3f}"
+        )
         output_lines.append("  Label-wise scores:")
         for label, score in label_scores.items():
-            if label != "overall_average":
-                if np.isnan(score):
-                    output_lines.append(f"    {label}: No valid samples")
-                else:
-                    output_lines.append(f"    {label}: {score:.3f}")
+            output_lines.append(f"    {label}: {score:.3f}")
 
-    # Print to console
     print("\n".join(output_lines))
 
-    # Save results
     excel_path = f"{args.output}.xlsx"
     txt_path = f"{args.output}.txt"
 
-    # Save detailed sample-wise results to Excel
     result_df.to_excel(excel_path, index=False)
 
-    # Save formatted results to text file
     with open(txt_path, "w") as f:
         f.write("\n".join(output_lines))
 
