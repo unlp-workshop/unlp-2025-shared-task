@@ -14,6 +14,9 @@ from datasets import Dataset, DatasetDict, load_from_disk
 from dotenv import load_dotenv
 import pandas as pd
 from tqdm.auto import tqdm
+from inference_pipelines.prompts.annotation_guidelines import ANNOTATION_GUIDELINES
+from inference_pipelines.prompts.annotation_prompt import ANNOTATION_PROMPT
+from inference_pipelines.prompts.sample_annotations import FEW_SHOT_EXAMPLES
 
 # Set up logging
 logging.basicConfig(
@@ -32,7 +35,7 @@ RETRY_DELAY = 1  # seconds
 
 # Import InferenceClient from utils
 try:
-    from utils import InferenceClient
+    from inference_pipelines.utils import InferenceClient
 except ImportError:
     logger.error(
         "Failed to import InferenceClient from utils. Make sure utils.py is in the path."
@@ -42,16 +45,13 @@ except ImportError:
 # ===== Prompt Selection System =====
 
 
-def select_prompt(
-    prompt_to_use: str, text: str, prompt_template: str = None, **kwargs
-) -> List[Dict[str, str]]:
+def select_prompt(prompt_to_use: str, text: str, **kwargs) -> List[Dict[str, str]]:
     """
     Select and call the appropriate prompt creation function based on the prompt_to_use parameter.
 
     Args:
         prompt_to_use: The name of the prompt creation function to use
         text: The input text to include in the prompt
-        prompt_template: Optional template string to use
         **kwargs: Additional arguments to pass to the prompt creation function
 
     Returns:
@@ -59,9 +59,8 @@ def select_prompt(
     """
     # Dictionary mapping prompt names to functions
     prompt_functions = {
-        "simple_prompt": create_simple_prompt,
-        "chat_prompt": create_chat_prompt,
-        # Add more prompt creation functions as needed
+        "annotation_prompt": annotation_prompt,
+        # add more prompts here
     }
 
     if prompt_to_use not in prompt_functions:
@@ -70,58 +69,32 @@ def select_prompt(
         )
         prompt_to_use = "simple_prompt"
 
-    return prompt_functions[prompt_to_use](text, prompt_template, **kwargs)
+    return prompt_functions[prompt_to_use](text, **kwargs)
 
 
-def create_simple_prompt(
-    text: str, prompt_template: str = None, **kwargs
-) -> List[Dict[str, str]]:
+def annotation_prompt(text: str, **kwargs) -> List[Dict[str, str]]:
     """
-    Create a simple prompt with a single user message.
+    Create an annotation prompt with the guidelines and prompt template.
 
     Args:
         text: The input text to include in the prompt
-        prompt_template: Template string with {TEXT} placeholder
         **kwargs: Additional arguments (unused in this function)
 
     Returns:
         List with a single user message dictionary
     """
-    if not prompt_template:
-        prompt_template = "{TEXT}"
+    prompt_template = ANNOTATION_PROMPT
 
-    content = prompt_template.replace("{TEXT}", text)
+    # replace text placeholder with text
+    content = prompt_template.replace("{{TEXT}}", text)
+
+    # replace guidelines placeholder with guidelines
+    content = content.replace("{{GUIDELINES}}", ANNOTATION_GUIDELINES)
+
+    # replace few shot examples placeholder with few shot examples
+    content = content.replace("{{FEW_SHOT_EXAMPLES}}", FEW_SHOT_EXAMPLES)
 
     return [{"role": "user", "content": content}]
-
-
-def create_chat_prompt(
-    text: str, prompt_template: str = None, system_message: str = None, **kwargs
-) -> List[Dict[str, str]]:
-    """
-    Create a chat prompt with system and user messages.
-
-    Args:
-        text: The input text to include in the prompt
-        prompt_template: Template string with {TEXT} placeholder for user message
-        system_message: Optional system message
-        **kwargs: Additional arguments (unused in this function)
-
-    Returns:
-        List of message dictionaries with system and user messages
-    """
-    messages = []
-
-    if system_message:
-        messages.append({"role": "system", "content": system_message})
-
-    if not prompt_template:
-        prompt_template = "{TEXT}"
-
-    content = prompt_template.replace("{TEXT}", text)
-    messages.append({"role": "user", "content": content})
-
-    return messages
 
 
 # ===== Inference Task Classes =====
@@ -305,8 +278,7 @@ def get_inference_tasks(ds: pd.DataFrame, config: dict) -> List[InferenceTask]:
     """Generate inference tasks for all rows."""
     tasks = []
     text_column = config["text_column_name"]
-    prompt_name = config.get("prompt", "simple_prompt")
-    prompt_template = config.get("prompt_template")
+    prompt_name = config.get("prompt", "annotation_prompt")
 
     for row_idx in range(len(ds)):
         row = ds.iloc[row_idx]
@@ -319,7 +291,6 @@ def get_inference_tasks(ds: pd.DataFrame, config: dict) -> List[InferenceTask]:
         message = select_prompt(
             prompt_name,
             row[text_column],
-            prompt_template,
             **config.get("prompt_kwargs", {}),
         )
 
