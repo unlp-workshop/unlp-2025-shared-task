@@ -171,6 +171,10 @@ def main():
 
     # Rename columns and prepare for score computation
     annotators = [col for col in pivot_df.columns if col != "text"]
+
+    # Drop rows where any annotator has empty annotations
+    pivot_df = pivot_df.dropna(subset=annotators, how="any")
+
     pivot_df = pivot_df.rename(
         columns={col: f"{col}_annotations" for col in annotators}
     )
