@@ -18,13 +18,15 @@ from inference_pipelines.prompts.annotation_guidelines import ANNOTATION_GUIDELI
 from inference_pipelines.prompts.annotation_prompt import ANNOTATION_PROMPT
 from inference_pipelines.prompts.sample_annotations import FEW_SHOT_EXAMPLES
 
+# Create logs directory if it doesn't exist
+Path("logs").mkdir(exist_ok=True)
+
 # Set up logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
         logging.FileHandler("logs/inference_engine.log"),
-        logging.StreamHandler(),
     ],
 )
 logger = logging.getLogger(__name__)
@@ -564,6 +566,9 @@ def process_batch_results(
     total_lines = sum(1 for _ in open(result_batch_jsonl_path))
     logging.info(f"Found {total_lines} results to process")
 
+    # Create progress bar for batch processing
+    pbar = tqdm(total=total_lines, desc="Processing batch results", unit="result")
+
     # Process each result in the batch results file
     with open(result_batch_jsonl_path, "r") as f:
         for line_num, line in enumerate(f, 1):
@@ -617,6 +622,12 @@ def process_batch_results(
                 stats["errors"]["ProcessingError"] = (
                     stats["errors"].get("ProcessingError", 0) + 1
                 )
+
+            # Update progress bar
+            pbar.update(1)
+
+    # Close progress bar
+    pbar.close()
 
     # Log final statistics
     elapsed_time = time.time() - start_time

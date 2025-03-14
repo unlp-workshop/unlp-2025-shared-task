@@ -9,3 +9,5 @@ batch_jobs/
 batch_inference_results/
 logs/
 agreement*
+*__pycache__*
+.env
