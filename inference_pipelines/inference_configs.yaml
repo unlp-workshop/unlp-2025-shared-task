@@ -22,5 +22,12 @@ data_annotation:
       jsonl_path: "batch_inference_results/set1/annotation-g4m.jsonl"
 
 dataset_creation:
-  jsonl_path: null
-  result_dataset_path: null
+  jsonl_path: "data_250_fixed.jsonl"
+  result_dataset_path: datasets/dataset_1
+
+convert_llm_response_to_span_annotations:
+  input_dataset_path: datasets/dataset_1
+  result_dataset_path: datasets/dataset_1_spans
+  generation_column_name: "response"
+  span_annotations_column_name: "llm_annotations"
+  labels: ["credibility_fallacy", "logical_fallacy", "emotional_fallacy"]

@@ -4,3 +4,8 @@ notebooks/
 annotations
 *.tex
 .vscode
+datasets/
+batch_jobs/
+batch_inference_results/
+logs/
+agreement*

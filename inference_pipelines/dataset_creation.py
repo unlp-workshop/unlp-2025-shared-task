@@ -5,11 +5,11 @@ from pathlib import Path
 from datasets import Dataset
 
 
-def load_config(config_path):
+def load_config(config_path, section):
     """Load configuration from YAML file."""
     with open(config_path, "r") as f:
         config = yaml.safe_load(f)
-    return config["dataset_creation"]
+    return config[section]
 
 
 def jsonl_to_dataset(jsonl_path, result_dataset_path):
@@ -37,13 +37,20 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
-        default="inference_pipelines/inference_configs.yaml",
+        default="inference_configs.yaml",
         help="Path to config file",
     )
+    parser.add_argument(
+        "--section",
+        type=str,
+        default="dataset_creation",
+        help="section in the inferece_configs.yaml file to use",
+    )
+
     args = parser.parse_args()
 
     # Load config
-    config = load_config(args.config)
+    config = load_config(args.config, args.section)
 
     jsonl_path = config["jsonl_path"]
     result_dataset_path = config["result_dataset_path"]
