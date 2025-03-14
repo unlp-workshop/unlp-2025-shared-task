@@ -17,6 +17,7 @@ from tqdm.auto import tqdm
 from inference_pipelines.prompts.annotation_guidelines import ANNOTATION_GUIDELINES
 from inference_pipelines.prompts.annotation_prompt import ANNOTATION_PROMPT
 from inference_pipelines.prompts.sample_annotations import FEW_SHOT_EXAMPLES
+from inference_pipelines.prompts.system_prompt import ANNOTATION_SYSTEM_PROMPT
 
 # Create logs directory if it doesn't exist
 Path("logs").mkdir(exist_ok=True)
@@ -96,7 +97,10 @@ def annotation_prompt(text: str, **kwargs) -> List[Dict[str, str]]:
     # replace few shot examples placeholder with few shot examples
     content = content.replace("{{FEW_SHOT_EXAMPLES}}", FEW_SHOT_EXAMPLES)
 
-    return [{"role": "user", "content": content}]
+    return [
+        {"role": "system", "content": ANNOTATION_SYSTEM_PROMPT},
+        {"role": "user", "content": content},
+    ]
 
 
 # ===== Inference Task Classes =====

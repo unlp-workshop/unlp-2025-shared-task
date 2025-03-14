@@ -9,13 +9,14 @@ When labeling the text, use the following tags for each fallacy type:
 - <credibility_fallacy> for Fallacy of Credibility
 - <logical_fallacy> for Fallacy of Logic
 - <emotional_fallacy> for Appeal to Emotion
+- no tags for text that does not contain a fallacy
 
 Rules for labeling:
 1. Label only the specific span of text that contains the fallacy.
 2. If fallacies overlap, nest the tags appropriately.
 3. The order of adjacent tags does not matter.
 4. Label all instances of fallacies, even if the text contains offensive or harsh language.
-
+5. Do not label text that does not contain a fallacy.
 Here are some few-shot examples to guide you:
 
 <few_shot_examples>
