@@ -648,6 +648,13 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
+        required=False,
+        default="inference_pipelines/inference_configs.yaml",
+        help="Config file to use from inference_configs.yaml (e.g., data_annotation)",
+    )
+    parser.add_argument(
+        "--section",
+        type=str,
         required=True,
         help="Config section to use from inference_configs.yaml (e.g., data_annotation)",
     )
@@ -657,14 +664,14 @@ def main():
     Path("logs").mkdir(exist_ok=True)
 
     # Load config
-    config_path = "inference_pipelines/inference_configs.yaml"
+    config_path = args.config
     with open(config_path, "r") as f:
         all_configs = yaml.safe_load(f)
 
-    if args.config not in all_configs:
-        raise ValueError(f"Config section '{args.config}' not found in {config_path}")
+    if args.section not in all_configs:
+        raise ValueError(f"Config section '{args.section}' not found in {config_path}")
 
-    config = all_configs[args.config]
+    config = all_configs[args.section]
 
     # Check required config values
     required_fields = [
