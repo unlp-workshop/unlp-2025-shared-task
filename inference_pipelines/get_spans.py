@@ -61,8 +61,18 @@ def convert_text_to_span_annotations(text, labels):
     Returns:
         list: List of [start, end, label] spans
     """
-    # Create a working copy of the text
-    cleaned_text = text.replace("<labeled_text>", "").replace("</labeled_text>", "")
+    try:
+        # extract the text between <labeled_text> and </labeled_text>
+        labeled_text_match = re.search(
+            r"<labeled_text>(.*?)</labeled_text>", text, re.DOTALL
+        )
+        if labeled_text_match:
+            text = labeled_text_match.group(1).strip()
+
+            # Create a working copy of the text
+        cleaned_text = text.strip()
+    except Exception as e:
+        return f"Parsing Error: {e}"
 
     # Initialize list to store spans
     spans = []

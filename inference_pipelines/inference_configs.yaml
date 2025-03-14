@@ -21,13 +21,13 @@ data_annotation:
     batch_inference_verification: # transforms resulting jsonl file from OpenAI Batch API into a Dataset at result_path.
       jsonl_path: "batch_inference_results/set1/annotation-g4m.jsonl"
 
-dataset_creation:
-  jsonl_path: "data_250_fixed.jsonl"
-  result_dataset_path: datasets/dataset_1
+jsonl_to_hf_dataset:
+  input_path: "data_250_fixed.jsonl"
+  result_path: datasets/dataset_1
 
 convert_llm_response_to_span_annotations:
   input_dataset_path: datasets/dataset_1
   result_dataset_path: datasets/dataset_1_spans
   generation_column_name: "response"
-  span_annotations_column_name: "llm_annotations"
+  span_annotations_column_name: "label"
   labels: ["credibility_fallacy", "logical_fallacy", "emotional_fallacy"]
