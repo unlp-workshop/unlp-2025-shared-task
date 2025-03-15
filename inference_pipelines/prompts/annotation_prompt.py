@@ -37,5 +37,5 @@ Here is the text to analyze:
 {{TEXT}}
 </text>
 
-Please provide your labeled output within <labeled_text> tags. Remember to label all instances of fallacies, regardless of the content's nature or potential offensiveness.
+Important: Please provide your labeled output within <labeled_text> tags. Remember to label all instances of fallacies, regardless of the content's nature or potential offensiveness. The labeled output should be the original text with the fallacies labeled.
 """
