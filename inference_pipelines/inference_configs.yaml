@@ -12,7 +12,7 @@ data_annotation:
   inference_client_type: vllm
   inference_client:
     vllm:
-      model: "NousResearch/Hermes-3-Llama-3.2-3B"
+      model: "NousResearch/DeepHermes-3-Mistral-24B-Preview"
       service_url: "http://localhost:42003/v1"
       api_key: vLLM_API_KEY
     batch_inference_creation: # creates a jsonl file to be submitted to OpenAI Batch API from the Dataset at dataset_path.
