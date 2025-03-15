@@ -1,0 +1,29 @@
+data_annotation:
+  # annotation  specific configs
+  input_dataset_path: datasets/dataset_1
+  result_dataset_path: datasets/dataset_1
+  prompt: annotation_prompt
+  text_column_name: "text"
+  generation_column_name: "response"
+  # llm generation configs
+  temperature: 0.70
+  top_p: 0.90
+  batch_size: 50
+  inference_client_type: vllm
+  inference_client:
+    vllm:
+      model: "NousResearch/DeepHermes-3-Mistral-24B-Preview"
+      service_url: "http://localhost:42003/v1"
+      api_key: vLLM_API_KEY
+    batch_inference_creation: # creates a jsonl file to be submitted to OpenAI Batch API from the Dataset at dataset_path.
+      model: "gpt-4o-mini"
+      jsonl_path: "batch_jobs/set1/annotation-g4m.jsonl"
+    batch_inference_verification: # transforms resulting jsonl file from OpenAI Batch API into a Dataset at result_path.
+      jsonl_path: "batch_inference_results/set1/annotation-g4m.jsonl"
+
+convert_llm_response_to_span_annotations:
+  input_dataset_path: filtered_annotations/deephermes_3.jsonl
+  result_dataset_path: filtered_annotations/deephermes_3.jsonl
+  generation_column_name: "response"
+  span_annotations_column_name: "label"
+  labels: ["credibility_fallacy", "logical_fallacy", "emotional_fallacy"]
