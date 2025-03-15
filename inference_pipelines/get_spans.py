@@ -144,6 +144,9 @@ def process_dataset(config):
         # Add to dataframe
         df.at[idx, span_col] = (spans,)
 
+    df[span_col] = df[span_col].apply(
+        lambda x: x[0] if isinstance(x, tuple) or isinstance(x, list) else x
+    )
     # Save the processed dataset
     save_dataset(df, config["result_dataset_path"])
 

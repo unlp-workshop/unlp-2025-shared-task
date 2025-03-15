@@ -22,8 +22,8 @@ data_annotation:
       jsonl_path: "batch_inference_results/set1/annotation-g4m.jsonl"
 
 convert_llm_response_to_span_annotations:
-  input_dataset_path: datasets/dataset_1
-  result_dataset_path: datasets/dataset_1
+  input_dataset_path: filtered_annotations/deephermes_3.jsonl
+  result_dataset_path: filtered_annotations/deephermes_3.jsonl
   generation_column_name: "response"
   span_annotations_column_name: "label"
   labels: ["credibility_fallacy", "logical_fallacy", "emotional_fallacy"]
