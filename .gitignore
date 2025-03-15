@@ -12,3 +12,4 @@ agreement*
 *__pycache__*
 .env
 *.gguf
+filtered_annotations

@@ -99,15 +99,30 @@ def save_data(data, output_path, output_format=None):
         raise ValueError(f"Unsupported output format: {output_format}")
 
 
-def convert_dataset(input_path, output_path, columns_to_keep=None):
+def convert_dataset(
+    input_path, output_path, columns_to_keep=None, filter_file=None, filter_field=None
+):
     """Convert dataset from one format to another."""
     input_format = detect_format(input_path)
     output_format = detect_format(output_path)
+    detected_filter_format = detect_format(filter_file)
 
     print(f"Converting from {input_format} to {output_format}...")
 
     # Load data from input format
     data = load_data(input_path, input_format)
+
+    # Apply filtering if filter_file is provided
+    if filter_file and filter_field:
+        filter_data = load_data(filter_file, detected_filter_format)
+        filter_values = set(
+            item[filter_field] for item in filter_data if filter_field in item
+        )
+        data = [
+            item
+            for item in data
+            if filter_field in item and item[filter_field] in filter_values
+        ]
 
     if columns_to_keep is not None:
         data = [
@@ -144,6 +159,20 @@ def main():
         help="Columns to keep in the output dataset",
         default=None,
     )
+    parser.add_argument(
+        "--filter-file",
+        type=str,
+        required=False,
+        help="Path to file containing filter values",
+        default=None,
+    )
+    parser.add_argument(
+        "--filter-field",
+        type=str,
+        required=False,
+        help="Field name to use for filtering",
+        default=None,
+    )
 
     args = parser.parse_args()
 
@@ -152,8 +181,11 @@ def main():
     columns_to_keep = args.columns_to_keep
     if columns_to_keep is not None and not isinstance(columns_to_keep, list):
         columns_to_keep = [columns_to_keep,]  # fmt: skip
+
     # Convert dataset
-    convert_dataset(input_path, output_path, columns_to_keep)
+    convert_dataset(
+        input_path, output_path, columns_to_keep, args.filter_file, args.filter_field
+    )
 
 
 if __name__ == "__main__":
