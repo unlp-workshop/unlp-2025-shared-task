@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES="2,3,4,5" vllm serve "NousResearch/DeepHermes-3-Mistral-24B-Preview" --port 42003 --dtype bfloat16 --gpu-memory-utilization 0.95 --seed 0 --max-model-len 4000 --tensor-parallel 4 2>&1 | tee logs/vllm_server.log
