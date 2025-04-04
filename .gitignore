@@ -1,1 +1,15 @@
 .DS_Store
+venv/
+notebooks/
+annotations
+*.tex
+.vscode
+datasets/
+batch_jobs/
+batch_inference_results/
+logs/
+agreement*
+*__pycache__*
+.env
+*.gguf
+filtered_annotations
