@@ -59,8 +59,8 @@ Submitting a paper is not mandatory for participating in the Shared Task.
 - **March 23, 2025** — Registration deadline
 - **March 31 (11:58 PM GMT +02:00), 2025** — Final submission of system responses  
 - **April 4, 2025** — Results of the Shared Task announced and release of test data  
-- **April 14, 2025** — Shared Task paper due  
-- **May 12, 2025** — Notification of acceptance  
+- **April 20, 2025** — Shared Task paper due  
+- **May 19, 2025** — Notification of acceptance  
 - **June 2, 2025** — Camera-ready Shared Task papers due  
 - **July 31 or August 1, 2025** — Workshop date
 
