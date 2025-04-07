@@ -68,6 +68,12 @@ Submitting a paper is not mandatory for participating in the Shared Task.
 
 Email: [kvrware@gmail.com](mailto:kvrware@gmail.com), [volodymyr.sydorskyi@gmail.com](mailto:volodymyr.sydorskyi@gmail.com), [romanyshyn.n@ucu.edu.ua](mailto:romanyshyn.n@ucu.edu.ua), [oleksiy.syvokon@gmail.com](mailto:oleksiy.syvokon@gmail.com)
 
+## License
+
+This repository’s content is licensed under the 
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
+See the [LICENSE](LICENSE) file for the full text.
+
 ## References
 
 [UNLP 2025 Call for Papers](https://unlp.org.ua/call-for-papers/)
