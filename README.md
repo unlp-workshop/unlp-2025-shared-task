@@ -2,7 +2,7 @@
 
 The Fourth Ukrainian NLP Workshop (UNLP 2025) organizes a Shared Task on Detecting Social Media Manipulation. This Shared Task aims to challenge and assess AI capabilities to detect and classify manipulation, laying the groundwork for progress in cybersecurity and the identification of disinformation within the context of Ukraine.
 
-The task was held from January 15 till Apr 4, 2025. You can view the [results here](#results).
+The task was held from January 15 till Apr 4, 2025. See the [results](#results) and access the full report in the UNLP 2025 [shared task paper](https://aclanthology.org/2025.unlp-1.12/).
 
 The Kaggle environments remain open for further experimentation, though any submissions after the official deadline will be considered outside of the UNLP 2025 Shared Task.
 The competition featured two tracks:
