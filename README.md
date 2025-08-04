@@ -6,11 +6,14 @@ The task was held from January 15 till Apr 4, 2025. See the [results](#results) 
 
 The Kaggle environments remain open for further experimentation, though any submissions after the official deadline will be considered outside of the UNLP 2025 Shared Task.
 The competition featured two tracks:
-- [Technique Classification Kaggle competition](https://www.kaggle.com/t/f40f491a48b841ab938275c169d57075 )
+- [Technique Classification Kaggle competition](https://www.kaggle.com/t/f40f491a48b841ab938275c169d57075)
 - [Span Identification Kaggle competition](https://www.kaggle.com/t/d633d1fa08cb472598e5ae3772ece142)
 
 
 Join the discussions in Discord via https://discord.gg/DYNnWaZD4a.
+
+- Shared Task Papers: you can find the papers for the Shared Task in the [UNLP 2025 Proceedings](https://aclanthology.org/volumes/2025.unlp-1/).
+- Shared Task Presentations: watch the recorded presentations from the UNLP 2025 Shared Task [here](https://www.youtube.com/playlist?list=PLr1w0qwTp9lCc4dn1B6oCd3FsJ-cxbBfP).
 
 ## Task Description
 
@@ -60,8 +63,6 @@ The UNLP 2025 Shared Task on Detecting Social Media Manipulation is officially c
     <img src="https://github.com/user-attachments/assets/0c12dcb1-7d11-4b2d-8e59-885239f5a167" width="45%" />
     <img src="https://github.com/user-attachments/assets/dffc0b7a-90e6-4c33-abc8-2a052517ed38" width="45%" />
 </div>
-
-Full report on the shared task — TBD.
 
 ## Publication
 
