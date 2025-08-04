@@ -86,7 +86,7 @@ Submitting a paper is not mandatory for participating in the Shared Task.
 
 ## Contacts
 
-Email: [kvrware@gmail.com](mailto:kvrware@gmail.com), [volodymyr.sydorskyi@gmail.com](mailto:volodymyr.sydorskyi@gmail.com), [romanyshyn.n@ucu.edu.ua](mailto:romanyshyn.n@ucu.edu.ua), [oleksiy.syvokon@gmail.com](mailto:oleksiy.syvokon@gmail.com)
+Email: [kvrware@gmail.com](mailto:kvrware@gmail.com), [volodymyr.sydorskyi@gmail.com](mailto:volodymyr.sydorskyi@gmail.com), [romanyshyn.n@ucu.edu.ua](mailto:romanyshyn.n@ucu.edu.ua)
 
 ## License
 
